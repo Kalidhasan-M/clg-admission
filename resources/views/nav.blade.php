@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Custom Navbar</title>
+  <title></title>
   <style>
     /* General Reset */
     * {
@@ -58,16 +58,16 @@
   <!-- Navbar -->
   <nav class="navbar">
     <!-- Logo -->
-    <div class="logo"><img src="/logo/pngtree-wolf-logo-png-image_2306634.jpg" alt="" style="width: 5vw;height: 4vw;"></div>
+    <div class="logo"><img src="/logo/pngtree-wolf-logo-png-image_2306634.jpg" alt="" style="width: 5vw;height: 4vw; margin-left: 50px;"></div>
     <!-- Navigation Links -->
     <div class="nav-links">
-      <a href="#">Home</a>
-      <a href="#">Department</a>
-      <a href="#">About</a>
+      <a href="/">Home</a>
+      <a href="/department">Department</a>
+      <a href="/about">About</a>
       <a href="#">Contact</a>
     </div>
     <!-- Registration Button -->
-    <button class="btn">Registration</button>
+    <button class="btn" style="margin-right: 50px;">Registration</button>
   </nav>
 </body>
 </html>
