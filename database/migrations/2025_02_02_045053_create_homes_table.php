@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('banner_image');
-            $table->string('programs');
+            $table->string('image');
+            $table->string('program_description');
             $table->string('student_name');
             $table->text('testimonial');
             $table->timestamps();
