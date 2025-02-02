@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('departments', function (Blueprint $table) {
+        Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('department');
-            $table->string('image')->nullable();
-            $table->string('description')->nullable();
-            $table->string('faculties')->nullable();
+            $table->string('name')->nullabel();
+            $table->string('email')->nullabel();
+            $table->string('phone')->nullabel();
+            $table->string('course')->nullabel();
+            $table->string('document_path')->nullabel();
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('departments');
+        Schema::dropIfExists('students');
     }
 };

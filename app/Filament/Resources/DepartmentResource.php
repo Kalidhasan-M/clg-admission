@@ -41,6 +41,10 @@ class DepartmentResource extends Resource
                     ->schema([
                         Forms\Components\TextInput::make('description')
                             ->label('Description'),
+                        Forms\Components\FileUpload::make('image')
+                            ->label('Image')
+                            ->image()
+                            ->directory('images'),
                     ])->columns(2)
                     ->collapsed(),
                 Forms\Components\Section::make('Faculty Members')

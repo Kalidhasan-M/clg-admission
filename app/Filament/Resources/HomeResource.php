@@ -28,35 +28,23 @@ class HomeResource extends Resource
                 Forms\Components\Section::make('General Information')
                     ->schema([
                         Forms\Components\TextInput::make('title')
-                            ->label('Title')
-                            ->required(),
+                            ->label('Title'),
                         Forms\Components\FileUpload::make('banner_image')
                             ->label('Banner Image')
                             ->image()
                             ->multiple()
-                            ->directory('home_images')
-                            ->required(),
+                            ->directory('home_images'),
                     ])->columns(2)
                     ->collapsible()
                     ->collapsed(),                        
                 Forms\Components\Section::make('Programs Offered')
                     ->schema([
-                        Forms\Components\Repeater::make('programs')
-                            ->label('Programs Offered')
-                            ->schema([
-                                Forms\Components\FileUpload::make('image')
-                                    ->required()
-                                    ->image()
-                                    ->directory('images'),
-                                Forms\Components\Textarea::make('program_description')
-                                    ->required()
-                                    ->label('Program Description'),
-                            ])->columns(2)
-                            ->collapsed()
-                            ->cloneable()
-                            ->reorderableWithDragAndDrop(false)
-                            ->itemLabel(fn(array $state): ?string => 'Program name : ' . $state['program_description'] ?? null),
-                    ])
+                        Forms\Components\FileUpload::make('image')
+                            ->image()
+                            ->directory('images'),
+                        Forms\Components\Textarea::make('program_description')
+                            ->label('Program Description')                            
+                    ])->columns(2)
                     ->collapsible()
                     ->collapsed(),
                 Forms\Components\Section::make('Testimonials')
