@@ -13,5 +13,7 @@ class Department extends Model
 
     protected $casts = [
         'faculties' => 'array',
+        'programs'  => 'array',
+        'forms'    =>'array',
     ];
 }

@@ -1,10 +1,10 @@
-
+@include('nav')
     <div class="mb-5 ab-box1 text-center">
         @if($slider)
             <img src="{{ asset('/storage/' . $slider) }}" alt="" style="width: 100vw; height: 30vw ;">
         @endif
         <div class="terms-heading-container">
-            <h4 class="terms-heading">TERMS & CONDITIONS</h4>
+            <h4 class="terms-heading">About</h4>
         </div>
     </div>
     </div>
@@ -72,6 +72,7 @@
             </div>
             </div>
         </div>
+        @include('footer')
        <style>
 .terms-heading-container {
     text-align: center;

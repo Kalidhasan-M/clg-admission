@@ -6,6 +6,8 @@ use App\Filament\Resources\DepartmentResource\Pages;
 use App\Models\Department;
 use App\Models\Program;
 use Filament\Forms;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\ViewField;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -18,7 +20,7 @@ class DepartmentResource extends Resource
     protected static ?string $navigationLabel = 'Department';
 
     protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
-    
+
     protected static ?int $navigationSort = 2;
 
     public static function form(Form $form): Form
@@ -32,21 +34,23 @@ class DepartmentResource extends Resource
                             ->required()
                             ->maxLength(255),
                         Forms\Components\TextInput::make('department')
-                            ->label('Department name')
+                            ->label('Department Name')
                             ->required()
                             ->maxLength(255),
                     ])->columns(2)
                     ->collapsed(),
-                Forms\Components\Section::make('Department details')
+
+                Forms\Components\Section::make('Department Details')
                     ->schema([
                         Forms\Components\TextInput::make('description')
                             ->label('Description'),
                         Forms\Components\FileUpload::make('image')
                             ->label('Image')
                             ->image()
-                            ->directory('images'),
+                        ,
                     ])->columns(2)
                     ->collapsed(),
+
                 Forms\Components\Section::make('Faculty Members')
                     ->schema([
                         Forms\Components\Repeater::make('faculties')
@@ -62,13 +66,38 @@ class DepartmentResource extends Resource
                             ])->columns(2)
                             ->collapsed()
                             ->cloneable()
-                            ->itemLabel(fn(array $state): ?string => 'Faculty name : ' . $state['faculty_name'])
+                            ->itemLabel(fn(array $state): ?string => 'Faculty name : ' . ($state['faculty_name'] ?? ''))
                             ->reorderableWithDragAndDrop(false),
                     ])
                     ->collapsed(),
+
+                Forms\Components\Section::make('Programs Offered')
+                    ->schema([
+                        Forms\Components\Repeater::make('programs')
+                            ->label('Programs')
+                            ->schema([
+                                Forms\Components\TextInput::make('program_name')
+                                    ->label('Program Name')
+                                    ->required(),
+                                Forms\Components\TextInput::make('program_duration')
+                                    ->label('Duration')
+                                    ->required(),
+                            ])->columns(2)
+                            ->collapsed()
+                            ->cloneable()
+                            ->itemLabel(fn(array $state): ?string => 'Program: ' . ($state['program_name'] ?? ''))
+                            ->reorderableWithDragAndDrop(false),
+                    ])
+                    ->collapsed(),
+
+                Forms\Components\Section::make('Forms')
+                    ->schema([
+                        ViewField::make('forms')->view('forms'),
+                    ]),
             ])
             ->columns(1);
     }
+
 
     public static function table(Table $table): Table
     {
