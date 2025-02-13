@@ -16,10 +16,13 @@ return new class extends Migration
             $table->string('name');
             $table->string('department');
             $table->string('image')->nullable();
-            $table->string('description')->nullable();
-            $table->string('faculties')->nullable();
+            $table->text('description')->nullable();
+            $table->json('faculties')->nullable();  // Change to JSON
+            $table->json('programs')->nullable();   // Change to JSON
+            $table->json('forms')->nullable();      // Change to JSON
             $table->timestamps();
         });
+
     }
 
     /**
