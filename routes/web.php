@@ -15,7 +15,8 @@ Route::post('/admission-submit', [AdmissionController::class, 'store'])->name('a
 
 Route::get('/', function () {
     $home = Home::first();
-    return view('Home', compact('home'));
+    $homeData = Home::all();
+    return view('Home', compact('home', 'homeData'));
 });
 
 Route::get('/department', function () {
