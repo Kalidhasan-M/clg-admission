@@ -13,11 +13,17 @@
 @endphp
 <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
-        @foreach($bannerImages as $index => $image)
-        <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
-            <img src="{{ asset($image) }}" class="d-block w-100" alt="Slide {{ $index + 1 }}" style="width:100vw!important; height: 40vw;">
+        @if(!empty($bannerImages) && is_array($bannerImages))
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                @foreach($bannerImages as $index => $image)
+                    <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                        <img src="{{ asset($image) }}" class="d-block w-100" alt="Slide {{ $index + 1 }}" style="width:100vw!important; height: 40vw;">
+                    </div>
+                @endforeach
+            </div>
         </div>
-        @endforeach
+        @endif
     </div>
 </div>
 <div style="max-width: 1200px; margin: 0 auto; background-color: #2674b7; padding: 16px; margin-top: 100px; margin-bottom: 100px; color: white">

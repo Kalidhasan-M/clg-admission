@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('homes', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('banner_image');
-            $table->string('image');
-            $table->string('program_description');
-            $table->string('student_name');
-            $table->text('testimonial');
+            $table->string('title')->nullable();
+            $table->string('banner_image')->nullable();
+            $table->string('image')->nullable();
+            $table->text('program_description')->nullable();
+            $table->string('student_name')->nullable();
+            $table->text('testimonial')->nullable();
             $table->timestamps();
         });
     }
