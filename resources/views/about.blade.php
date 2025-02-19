@@ -10,68 +10,71 @@
     </div>
         <div class="ab-box2 privacybox termbox mb-10 text-left container">
             <style>
-                .privacybox p{
-                    margin: 0;
-                    line-height: 1.2;
+                .accordion-button {
+                    border: 1px solid #26c6da;
+                    color: #26c6da;
+                    font-weight: 500;
+                    background-color: transparent;
                 }
-                .privacybox ul,
-                .privacybox strong,
-                .privacybox h4 {
-                    margin: 0;
-                    line-height: 0.5;
+                .accordion-button:focus {
+                    box-shadow: none;
+                }
+                .accordion-button:not(.collapsed) {
+                    color: white;
+                    background-color: #26c6da;
+                }
+                .accordion-item {
+                    border: 1px solid #26c6da;
                 }
             </style>
-           <div class="container d-lg-flex justify-between">
-                <div>
-                    <div class="quick-links" style="flex: 1; margin-right: 20px; border: 1px solid #ccc; padding: 10px; width: 292px; position: sticky; top: 10px;">
-                        <h3 style="margin-bottom: -12px; margin-left: 10px; font-size: 15px;font-family: 'Poppins', sans-serif;font-weight: 550;">Quick Links</h3>
-                <hr style="margin-top: -3px;" >
+           <div class="container d-lg-flex justify-content-between mt-4">
+            <div class="quick-links" style="flex: 1; margin-right: 20px; border: 1px solid #ccc; padding: 10px; width: 292px; position: sticky; top: 10px;">
+                <h3 style="margin-bottom: -12px; margin-left: 10px; font-size: 15px;font-family: 'Poppins', sans-serif;font-weight: 550;">Quick Links</h3>
+                <hr style="margin-top: -3px;">
                 <ul style="margin-top: -40px;">
-                        @php $i = 1; @endphp
-                        @foreach($terms as $indexKey => $term)
+                    @php $i = 1; @endphp
+                    @foreach($terms as $indexKey => $term)
                         @if(!empty($term->text) && is_array($term->text))
-                    @foreach($term->text as $subIndex => $item)
-                        @php $loopitem = $loop->iteration; @endphp
-                        @if($loopitem == 1)
-                            <a href="#heading{{ $i }}" class="text-dark text-decoration-none">
-                                {{ $i }}) {{ $term->title ?? 'Untitled' }}
-                            </a>
-                            @php $i++; @endphp
+                            @foreach($term->text as $subIndex => $item)
+                                @php $loopitem = $loop->iteration; @endphp
+                                @if($loopitem == 1)
+                                    <a href="#heading{{ $i }}" class="text-dark text-decoration-none">
+                                        {{ $i }}) {{ $term->title ?? 'Untitled' }}
+                                    </a>
+                                    @php $i++; @endphp
+                                @endif
+                            @endforeach
                         @endif
                     @endforeach
-                @endif
-                        @endforeach
-                    </ul>
-                </div>
-                </div>
-                <div id="accordion" class="tr-coll" style="flex: 3;margin-top: -60px;">
+                </ul>
+            </div>
+
+            <div class="accordion tr-coll" id="itineraryAccordion" style="flex: 3; margin-top: -60px;">
                 @php $j = 0; $k=1; @endphp
                 @foreach($terms as $indexKey => $term)
-                    <h2 style="margin-bottom: -51px;  margin-top:60px;font-size: 21px;" data-target="#collapse{{ $j }}">{{ $k }}) {{ $term->title ?? 'Untitled' }}</h2>
-                    @php $k++; @endphp
-                    @if(is_array($term->text) && count($term->text) > 0)
-                    @foreach($term->text as $subIndex => $item)
-                    @php $j++; @endphp
-                            <div class="card" style="margin-bottom: -83px;">
-                                <div class="card-header" id="heading{{ $j }}">
-                                    <h5 class="mb-0">
-                                        <button data-toggle="collapse" data-target="#collapse{{ $j }}" aria-expanded="false" aria-controls="collapse{{ $j }}" style="padding-top: 0px;font-size: 14px;font-family:'Poppins', sans-serif; font-weight: 550">
-                                            {{ $item['sub_heading'] ?? 'No sub-heading' }}
-                                        </button>
-                                    </h5>
-                                </div>
-                                <div id="collapse{{ $j }}" class="collapse" aria-labelledby="heading{{ $j }}" data-parent="#accordion">
-                                    <div class="card-body">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading{{ $k }}">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $k }}" aria-expanded="false" aria-controls="collapse{{ $k }}">
+                                Day {{ $k }}: {{ $term->title ?? 'Untitled' }}
+                            </button>
+                        </h2>
+                        <div id="collapse{{ $k }}" class="accordion-collapse collapse" data-bs-parent="#itineraryAccordion">
+                            <div class="accordion-body">
+                                @if(is_array($term->text) && count($term->text) > 0)
+                                    @foreach($term->text as $subIndex => $item)
                                         <p>{!! $item['text'] ?? 'No text available.' !!}</p>
-                                    </div>
-                                </div>
+                                    @endforeach
+                                @else
+                                    <p>No details available.</p>
+                                @endif
                             </div>
-                        @endforeach
-                    @endif
+                        </div>
+                    </div>
+                    @php $k++; @endphp
                 @endforeach
             </div>
-            </div>
         </div>
+
         @include('footer')
        <style>
 .terms-heading-container {
@@ -166,6 +169,8 @@
     text-decoration: underline;
 }
 </style>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 <script>
     document.addEventListener("DOMContentLoaded", function() {
