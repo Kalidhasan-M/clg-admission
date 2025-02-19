@@ -68,7 +68,7 @@
     </div>
     <!-- Registration Button -->
     <a href="{{ route('admission.form') }}" target="_blank">
-      <button class="btn btn-primary" style="margin-right: 50px;">Registration</button>
+      <button class="btn btn-primary" style="margin-right: 50px;">Enquiry form</button>
     </a>
   </nav>
 </body>
