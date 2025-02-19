@@ -15,10 +15,10 @@
 <style>
     .department-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
-    gap: 20px; /* Adjusts space between grid items */
-    max-width: 1200px; /* Adjust as needed */
-    margin: 0 auto; /* Centers the container */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 20px;
 }
 

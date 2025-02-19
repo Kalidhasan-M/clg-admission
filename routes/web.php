@@ -12,7 +12,6 @@ Route::get('/admission-form', function () {
 })->name('admission.form');
 
 Route::post('/admission-submit', [AdmissionController::class, 'store'])->name('admission.submit');
-
 Route::get('/', function () {
     $home = Home::first();
     $homeData = Home::all();
@@ -32,5 +31,4 @@ Route::get('/about', function () {
 });
 
 Route::get('/departments/applyform/{id}', [DepartmentController::class, 'show']);
-
 Route::post('/save-form', [DepartmentController::class, 'saveForm'])->name('save.form');

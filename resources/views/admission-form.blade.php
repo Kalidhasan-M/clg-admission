@@ -59,7 +59,7 @@
                         <label class="form-label fw-bold">Upload Documents (PDF, JPG, PNG) *</label>
                         <input type="file" name="documents" class="form-control" required>
                     </div>
-                    <button type="submit" class="btn btn-primary w-100">Submit Application</button>
+                    <button type="submit" class="btn btn-primary w-100">Submit</button>
                 </form>
             </div>
         </div>

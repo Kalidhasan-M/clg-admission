@@ -17,7 +17,6 @@ class DepartmentController extends Controller
     public function show($id)
     {
         $departments = Department::Where('forms',$id);
-        dd($departments);
         return View('Application');
     }
     public function saveForm(Request $request)
