@@ -16,4 +16,9 @@ class EditDepartment extends EditRecord
             Actions\DeleteAction::make(),
         ];
     }
+    public function getTitle(): string
+    {
+        $dept = $this->record;
+        return "Department :  " . $dept->department . ' - ' . $dept->name;
+    }
 }

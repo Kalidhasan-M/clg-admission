@@ -67,7 +67,7 @@
       <a href="#">Contact</a>
     </div>
     <!-- Registration Button -->
-    <a href="{{ route('admission.form') }}" target="_blank">
+    <a href="{{ route('enquiry.store') }}" target="_blank">
       <button class="btn btn-primary" style="margin-right: 50px;">Enquiry form</button>
     </a>
   </nav>
