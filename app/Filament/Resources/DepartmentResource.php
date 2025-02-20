@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\DepartmentResource\Pages;
+use App\Filament\Resources\DepartmentResource\RelationManagers\DeptRelationManager;
 use App\Models\Department;
 use App\Models\Program;
 use Filament\Forms;
@@ -125,7 +126,7 @@ class DepartmentResource extends Resource
     public static function getRelations(): array
     {
         return [
-            // You can add relations to show associated data like Programs, Faculties
+            DeptRelationManager::class,
         ];
     }
 

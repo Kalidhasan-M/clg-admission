@@ -16,4 +16,8 @@ class Department extends Model
         'programs'  => 'array',
         'forms'    =>'array',
     ];
+    public function dept()
+    {
+        return $this->hasMany(Student::class);
+    }
 }

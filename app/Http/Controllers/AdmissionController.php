@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Department;
 use Illuminate\Http\Request;
 use App\Models\Student;
 use Illuminate\Support\Facades\Storage;
@@ -16,6 +18,10 @@ class AdmissionController extends Controller
             'course' => 'required|string',
             'documents' => 'required|file|mimes:pdf,jpg,png|max:2048',
         ]);
+        $department = Department::where('department', $validatedData['course'])->first();
+        if (!$department) {
+            return redirect()->back()->withErrors(['course' => 'Invalid course selected']);
+        }
         if ($request->hasFile('documents')) {
             $filePath = $request->file('documents')->store('admissions', 'public');
         }
@@ -24,6 +30,7 @@ class AdmissionController extends Controller
             'email' => $validatedData['email'],
             'phone' => $validatedData['phone'],
             'course' => $validatedData['course'],
+            'department_id' => $department->id,
             'document_path' => $filePath ?? null,
         ]);
         return redirect()->back()->with('success', 'Application submitted successfully!');

@@ -6,12 +6,18 @@ use App\Models\Home;
 use App\Models\Department;
 use App\Http\Controllers\AdmissionController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\EnquiryController;
 
 Route::get('/admission-form', function () {
     return view('admission-form');
 })->name('admission.form');
 
+Route::get('/enquiry', function () {
+    return view('enquiry');
+});
+
 Route::post('/admission-submit', [AdmissionController::class, 'store'])->name('admission.submit');
+Route::post('/enquiry', [EnquiryController::class, 'store'])->name('enquiry.store');
 Route::get('/', function () {
     $home = Home::first();
     $homeData = Home::all();
