@@ -36,8 +36,8 @@ class AboutResource extends Resource
             Forms\Components\Repeater::make('text')
                 ->schema([
                     Forms\Components\TextInput::make('sub_heading')->label('Sub Heading'),
-                    Forms\Components\RichEditor::make('text')->label('Description'),
-                ])
+                    Forms\Components\RichEditor::make('text')->label('Description')->columnSpan(2),
+                ])->columns(3)
                 ->collapsed()
                 ->itemLabel(fn(array $state): ?string => 'Sub heading : ' . $state['sub_heading'])
                 ->required()
@@ -49,7 +49,8 @@ class AboutResource extends Resource
 
     public static function table(Table $table): Table
     {
-        return $table->columns([
+        return $table
+        ->columns([
             Tables\Columns\TextColumn::make('title')->label('Title')->wrap(),
             Tables\Columns\ImageColumn::make('image')->label('Image'),
             Tables\Columns\TextColumn::make('text')->label('Text')->html()->wrap()

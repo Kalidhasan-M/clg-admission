@@ -90,11 +90,6 @@ class DepartmentResource extends Resource
                             ->reorderableWithDragAndDrop(false),
                     ])
                     ->collapsed(),
-
-                Forms\Components\Section::make('Forms')
-                    ->schema([
-                        ViewField::make('forms')->view('forms'),
-                    ]),
             ])
             ->columns(1);
     }
