@@ -39,7 +39,7 @@
                                 @php $loopitem = $loop->iteration; @endphp
                                 @if($loopitem == 1)
                                     <a href="#heading{{ $i }}" class="text-dark text-decoration-none">
-                                        {{ $i }}) {{ $term->title ?? 'Untitled' }}
+                                        {{ $i }}) {{ $term->title ?? '' }}
                                     </a>
                                     @php $i++; @endphp
                                 @endif
@@ -55,14 +55,14 @@
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="heading{{ $k }}">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $k }}" aria-expanded="false" aria-controls="collapse{{ $k }}">
-                                Day {{ $k }}: {{ $term->title ?? 'Untitled' }}
+                                {{ $k }}) {{ $term->title ?? '' }}
                             </button>
                         </h2>
                         <div id="collapse{{ $k }}" class="accordion-collapse collapse" data-bs-parent="#itineraryAccordion">
                             <div class="accordion-body">
                                 @if(is_array($term->text) && count($term->text) > 0)
                                     @foreach($term->text as $subIndex => $item)
-                                        <p>{!! $item['text'] ?? 'No text available.' !!}</p>
+                                        <p>{!! $item['text'] ?? '' !!}</p>
                                     @endforeach
                                 @else
                                     <p>No details available.</p>
