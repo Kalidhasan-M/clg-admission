@@ -5,12 +5,16 @@ use App\Models\About;
 use App\Models\Home;
 use App\Models\Department;
 use App\Http\Controllers\AdmissionController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EnquiryController;
 
 Route::get('/admission-form', function () {
     return view('admission-form');
 })->name('admission.form');
+
+Route::get('/contact', [ContactController::class, 'showForm'])->name('contact.form');
+Route::post('/contact', [ContactController::class, 'submitForm'])->name('contact.submit');
 
 Route::get('/enquiry', function () {
     return view('enquiry');
