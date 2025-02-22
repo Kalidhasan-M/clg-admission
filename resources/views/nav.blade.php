@@ -64,7 +64,7 @@
       <a href="/">Home</a>
       <a href="/department">Department</a>
       <a href="/about">About</a>
-      <a href="#">Contact</a>
+      <a href="/contact">Contact</a>
     </div>
     <!-- Registration Button -->
     <a href="{{ route('enquiry.store') }}" target="_blank">
