@@ -15,7 +15,6 @@ class StatsOverview extends BaseWidget
         return [
             Stat::make('No.of Students', Student::count()),
             Stat::make('No.of Courses', Department::count()),
-            Stat::make('No.of Enquiries', Enquiry::count()),
         ];
     }
 }
