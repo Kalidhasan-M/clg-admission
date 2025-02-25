@@ -58,7 +58,7 @@
   <!-- Navbar -->
   <nav class="navbar">
     <!-- Logo -->
-    <div class="logo"><img src="/logo/pngtree-wolf-logo-png-image_2306634.jpg" alt="" style="width: 5vw;height: 4vw; margin-left: 50px;"></div>
+    <div class="logo"><a href="{{ $brand->link }}" target="_blank"><img src="{{ asset('storage/' . $brand->brand) }}" alt="Brand Logo" style="width: 5vw;height: 4vw; margin-left: 50px;"></div>
     <!-- Navigation Links -->
     <div class="nav-links">
       <a href="/">Home</a>
