@@ -28,13 +28,13 @@
 
     .navbar .nav-links a {
       text-decoration: none;
-      color: #000;
+      color: #273da1;
       font-size: 1rem;
       padding: 5px 10px;
     }
 
     .navbar .nav-links a:hover {
-      color: #007bff;
+      color: #764ba2;
     }
 
     /* Button Styles */
@@ -68,7 +68,7 @@
     </div>
     <!-- Registration Button -->
     <a href="{{ route('enquiry.store') }}" target="_blank">
-      <button class="btn btn-primary" style="margin-right: 50px;">Enquiry form</button>
+      <button class="btn btn-primary" style="margin-right: 50px; background: linear-gradient(135deg, #273da1, #764ba2);">Enquiry form</button>
     </a>
   </nav>
 </body>
