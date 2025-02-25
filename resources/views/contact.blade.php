@@ -55,22 +55,26 @@
             <form action="{{ route('contact.submit') }}" method="POST">
                 @csrf
                 <div class="mb-3">
-                    <label class="form-label fw-semibold">Your Name</label>
+                    <label class="form-label fw-semibold">Name</label>
                     <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" placeholder="Enter your name">
                     @error('name') <div class="text-danger small">{{ $message }}</div> @enderror
                 </div>
                 <div class="mb-3">
-                    <label class="form-label fw-semibold">Your Email</label>
+                    <label class="form-label fw-semibold">Email</label>
                     <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" placeholder="Enter your email">
                     @error('email') <div class="text-danger small">{{ $message }}</div> @enderror
                 </div>
                 <div class="mb-3">
-                    <label class="form-label fw-semibold">Your Message</label>
+                    <label class="form-label fw-semibold">Phone number</label>
+                    <input type="number" name="number" class="form-control @error('number') is-invalid @enderror" value="{{ old('number') }}" placeholder="Enter your number">
+                    @error('number') <div class="text-danger small">{{ $message }}</div> @enderror
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Message</label>
                     <textarea name="message" class="form-control @error('message') is-invalid @enderror" rows="5" placeholder="Type your message...">{{ old('message') }}</textarea>
-                    @error('message') <div class="text-danger small">{{ $message }}</div> @enderror
                 </div>
 
-                <button type="submit" class="btn btn-custom w-100 fw-bold">Send Message</button>
+                <button type="submit" class="btn btn-primary w-100 fw-bold">Send Message</button>
             </form>
         </div>
     </div>
