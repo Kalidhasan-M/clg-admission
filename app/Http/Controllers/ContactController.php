@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Logo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -9,7 +10,8 @@ class ContactController extends Controller
 {
     public function showForm()
     {
-        return view('contact');
+        $brand = Logo::first();
+        return view('contact', compact('brand'));
     }
 
     public function submitForm(Request $request)

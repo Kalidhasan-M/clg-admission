@@ -18,7 +18,8 @@ Route::get('/contact', [ContactController::class, 'showForm'])->name('contact.fo
 Route::post('/contact', [ContactController::class, 'submitForm'])->name('contact.submit');
 
 Route::get('/enquiry', function () {
-    return view('enquiry');
+    $brand = Logo::first();
+    return view('enquiry', compact('brand'));
 });
 
 Route::post('/admission-submit', [AdmissionController::class, 'store'])->name('admission.submit');
@@ -32,14 +33,16 @@ Route::get('/', function () {
 
 Route::get('/department', function () {
     $departments = Department::all();
-    return view('Department', compact('departments'));
+    $brand = Logo::first();
+    return view('Department', compact('departments', 'brand'));
 });
 
 Route::get('/about', function () {
     $terms = About::all();
     $images = About::first();
+    $brand = Logo::first();
     $slider = $images ? $images->image : null;
-    return view('about', compact('terms', 'slider'));
+    return view('about', compact('terms', 'slider', 'brand'));
 });
 
 Route::get('/departments/applyform/{id}', [DepartmentController::class, 'show']);
