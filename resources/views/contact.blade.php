@@ -1,3 +1,8 @@
+@php
+    use App\Settings\GeneralSettings;
+    $settings = app(GeneralSettings::class);
+@endphp
+
 @include('nav')
 <!DOCTYPE html>
 <html lang="en">
@@ -9,16 +14,20 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <style>
-    body {
+
+   body {
         background: linear-gradient(135deg, #273DA1, #764BA2);
-        height: 100vh;
+        min-height: 100vh;
+        align-items: center;
+        justify-content: center;
+
     }
     .contact-container {
-        max-width: 600px;
+        max-width: 700px;
         background: #fff;
-        padding: 30px;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
     .form-control {
         border-radius: 8px;
@@ -33,15 +42,21 @@
         background: #667EEA;
         color: white;
         border-radius: 8px;
-        padding: 10px;
+        padding: 12px;
         transition: 0.3s;
     }
     .btn-custom:hover {
         background: #764BA2;
+
+    }
+    .info-container {
+        text-align: center;
+        color: #fff;
     }
 </style>
 <body>
-    <div class="container d-flex justify-content-center align-items-center mt-14 bg-white"styl>
+    <div class="container d-flex flex-column flex-lg-row justify-content-center align-items-center py-5 px-4" style="background: linear-gradient(135deg, #764BA2, #273DA1); border-radius: 12px;">
+
         <div class="contact-container " style="margin-right: 100px;">
             <h2 class="text-center text-primary fw-bold">Get in Touch</h2>
             <p class="text-center text-muted">We'd love to hear from you. Send us a message!</p>
@@ -68,19 +83,25 @@
                     <textarea name="message" class="form-control @error('message') is-invalid @enderror" rows="5" placeholder="Type your message...">{{ old('message') }}</textarea>
                     @error('message') <div class="text-danger small">{{ $message }}</div> @enderror
                 </div>
-                <button type="submit" class="btn btn-custom w-100 fw-bold">Send Message</button>
+
+                <button type="submit" class="btn btn-primary w-100 fw-bold">Send Message</button>
             </form>
         </div>
-        <div class="mt-6 pr-16">
+        <div class="mt-6 pr-16"> 
             <div>
-                <div class="shadow-md rounded-lg">
+                <div class="shadow-md rounded-lg p-4 bg-white">
                     <h2 class="text-xl font-semibold mb-2">Contact Information</h2>
-                    <p class="text-black"><strong> Address:</strong> 123 Street, City, Country</p>
-                    <p class="text-black mt-1"><strong>:telephone_receiver: Phone:</strong> +1 234 567 890</p>
-                    <p class="text-black mt-1"><strong>:email: Email:</strong> contact@example.com</p>
+                    <p class="text-black"><a href="{{ $settings->address }}">Address: {{ $settings->address }}</a></p>
+                    <p class="text-black mt-1"><a href="tel:{{ $settings->phone }}">📞 Phone: {{ $settings->phone }}</a></p>
+                    <p class="text-black mt-1"><a href="mailto:{{ $settings->email }}">📧 Email: {{ $settings->email }}</a></p>
                 </div>
             </div>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6491.268956464189!2d77.87880571378419!3d9.398612984683504!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b06cbacf490bfa1%3A0x7b266d32f3fa3835!2sSri%20Krishnasamy%20Arts%20and%20Science%20College%2CSattur!5e1!3m2!1sen!2sin!4v1740467708823!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe 
+                src="https://www.google.com/maps/embed?pb={{ urlencode($settings->location) }}" 
+                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+
         </div>
     </div>
 </body>
