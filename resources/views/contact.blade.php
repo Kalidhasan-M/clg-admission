@@ -14,11 +14,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <style>
+
    body {
         background: linear-gradient(135deg, #273DA1, #764BA2);
         min-height: 100vh;
         align-items: center;
         justify-content: center;
+
     }
     .contact-container {
         max-width: 700px;
@@ -45,6 +47,7 @@
     }
     .btn-custom:hover {
         background: #764BA2;
+
     }
     .info-container {
         text-align: center;
@@ -53,6 +56,7 @@
 </style>
 <body>
     <div class="container d-flex flex-column flex-lg-row justify-content-center align-items-center py-5 px-4" style="background: linear-gradient(135deg, #764BA2, #273DA1); border-radius: 12px;">
+
         <div class="contact-container " style="margin-right: 100px;">
             <h2 class="text-center text-primary fw-bold">Get in Touch</h2>
             <p class="text-center text-muted">We'd love to hear from you. Send us a message!</p>
@@ -79,6 +83,7 @@
                     <textarea name="message" class="form-control @error('message') is-invalid @enderror" rows="5" placeholder="Type your message...">{{ old('message') }}</textarea>
                     @error('message') <div class="text-danger small">{{ $message }}</div> @enderror
                 </div>
+
                 <button type="submit" class="btn btn-primary w-100 fw-bold">Send Message</button>
             </form>
         </div>
@@ -96,6 +101,7 @@
                 width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" 
                 referrerpolicy="no-referrer-when-downgrade">
             </iframe>
+
         </div>
     </div>
 </body>

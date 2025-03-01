@@ -70,7 +70,7 @@
             @endif
         </div>
         <div class="copyright">
-            &copy; {{ date('Y') }} Developed & Maintained by: SKAASC – Dept.of B.com
+            &copy; {{ date('Y') }} Developed & Maintained by: SKAASC – Dept.of B.com ca
         </div>
     </div>
 </footer>

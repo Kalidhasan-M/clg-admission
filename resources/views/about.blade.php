@@ -11,7 +11,7 @@
         <div class="ab-box2 privacybox termbox mb-10 text-left container">
             <style>
                 .accordion-button {
-                    border: 1px solid #26c6da;
+                  
                     color: #26c6da;
                     font-weight: 500;
                     background-color: transparent;
@@ -23,59 +23,58 @@
                     color: white;
                     background-color: #26c6da;
                 }
-                .accordion-item {
-                    border: 1px solid #26c6da;
-                }
+             
             </style>
-           <div class="container d-lg-flex justify-content-between mt-4">
-            <div class="quick-links" style="flex: 1; margin-right: 20px; border: 1px solid #ccc; padding: 10px; width: 292px; position: sticky; top: 10px;">
-                <h3 style="margin-bottom: -12px; margin-left: 10px; font-size: 15px;font-family: 'Poppins', sans-serif;font-weight: 550;">Quick Links</h3>
-                <hr style="margin-top: -3px;">
-                <ul style="margin-top: -40px;">
-                    @php $i = 1; @endphp
-                    @foreach($terms as $indexKey => $term)
-                        @if(!empty($term->text) && is_array($term->text))
-                            @foreach($term->text as $subIndex => $item)
-                                @php $loopitem = $loop->iteration; @endphp
-                                @if($loopitem == 1)
-                                    <a href="#heading{{ $i }}" class="text-dark text-decoration-none">
-                                        {{ $i }}) {{ $term->title ?? '' }}
-                                    </a>
-                                    @php $i++; @endphp
-                                @endif
-                            @endforeach
-                        @endif
-                    @endforeach
-                </ul>
-            </div>
-
-            <div class="accordion tr-coll" id="itineraryAccordion" style="flex: 3; margin-top: -60px;">
-                @php $j = 0; $k=1; @endphp
-                @foreach($terms as $indexKey => $term)
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="heading{{ $k }}">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $k }}" aria-expanded="false" aria-controls="collapse{{ $k }}">
-                                {{ $k }}) {{ $term->title ?? '' }}
-                            </button>
-                        </h2>
-                        <div id="collapse{{ $k }}" class="accordion-collapse collapse" data-bs-parent="#itineraryAccordion">
-                            <div class="accordion-body">
-                                @if(is_array($term->text) && count($term->text) > 0)
-                                    @foreach($term->text as $subIndex => $item)
-                                        <p>{!! $item['text'] ?? '' !!}</p>
-                                    @endforeach
-                                @else
-                                    <p>No details available.</p>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-                    @php $k++; @endphp
+           <div class="container d-lg-flex justify-items-center mt-4">
+            <div>
+           <div class="quick-links parent-container" style=" margin-right: 20px; border: 1px solid #ccc; padding: 10px; width: 260px; position: sticky; top: 50px; background: white;">
+    <h3 style="margin-bottom: -12px; margin-left: 10px; font-size: 15px; font-family: 'Poppins', sans-serif; font-weight: 550;">Quick Links</h3>
+    
+    <ul style="margin-top: 15px;">
+        @php $i = 1; @endphp
+        @foreach($terms as $indexKey => $term)
+            @if(!empty($term->text) && is_array($term->text))
+                @foreach($term->text as $subIndex => $item)
+                    @php $loopitem = $loop->iteration; @endphp
+                    @if($loopitem == 1)
+                        <a href="#heading{{ $i }}" class="text-dark text-decoration-none">
+                            {{ $i }}) {{ $term->title ?? '' }}
+                        </a><br>
+                        @php $i++; @endphp
+                    @endif
                 @endforeach
+            @endif
+        @endforeach
+    </ul>
+</div>
+</div>
+
+            <div class="accordion tr-coll" id="itineraryAccordion" style="flex: 3; margin-top: -40px;">
+    @php $j = 0; $k=1; @endphp
+    @foreach($terms as $indexKey => $term)
+        <div >
+            <h2 class="accordion-header" id="heading{{ $k }}">
+                <h2 >
+                    {{ $k }}) {{ $term->title ?? '' }}
+            </h2>
+            </h2>
+            <div class="accordion-body">
+                @if(is_array($term->text) && count($term->text) > 0)
+                    @foreach($term->text as $subIndex => $item)
+                        <p>{!! $item['text'] ?? '' !!}</p>
+                    @endforeach
+                @else
+                    <p>No details available.</p>
+                @endif
             </div>
         </div>
+        @php $k++; @endphp
+    @endforeach
+</div>
 
-        @include('footer')
+        </div>
+        </div>
+       
        <style>
 .terms-heading-container {
     text-align: center;
@@ -191,38 +190,39 @@
         });
     });
 });
-window.addEventListener('scroll', function () {
-    var quickLinks = document.querySelector('.quick-links');
-    var accordion = document.getElementById('accordion');
-    var offsetTop = 10;
-    var footer = document.querySelector('footer');
-    var isMobile = window.innerWidth <= 768;
-    if (!isMobile) {
-        var quickLinksTop = quickLinks.parentElement.getBoundingClientRect().top;
-        var footerTop = footer.getBoundingClientRect().top;
-        if (quickLinksTop <= offsetTop && footerTop > quickLinks.offsetHeight) {
-            quickLinks.style.position = 'fixed';
-            quickLinks.style.top = offsetTop + 'px';
-            quickLinks.style.marginRight = '20px';
-            accordion.style.marginLeft = '310px';
-        } else if (footerTop <= quickLinks.offsetHeight) {
-            quickLinks.style.position = 'absolute';
-            quickLinks.style.top = footerTop - quickLinks.offsetHeight + 'px';
-            quickLinks.style.marginRight = '20px';
-            accordion.style.marginLeft = '0';
-        } else {
-            quickLinks.style.position = 'relative';
-            quickLinks.style.top = 'initial';
-            quickLinks.style.marginRight = '20px';
-            accordion.style.marginLeft = '0';
-        }
-    } else {
-        quickLinks.style.position = 'relative';
-        quickLinks.style.top = 'initial';
-        quickLinks.style.marginRight = '20px';
-        accordion.style.marginLeft = '0';
-    }
-});
+// window.addEventListener('scroll', function () {
+//     var quickLinks = document.querySelector('.quick-links');
+//     var accordion = document.getElementById('accordion');
+//     var offsetTop = 10;
+//     var footer = document.querySelector('footer');
+//     var isMobile = window.innerWidth <= 768;
+//     if (!isMobile) {
+//         var quickLinksTop = quickLinks.parentElement.getBoundingClientRect().top;
+//         var footerTop = footer.getBoundingClientRect().top;
+//         if (quickLinksTop <= offsetTop && footerTop > quickLinks.offsetHeight) {
+//             quickLinks.style.position = 'fixed';
+//             quickLinks.style.top = offsetTop + 'px';
+//             quickLinks.style.marginRight = '20px';
+//             accordion.style.marginLeft = '310px';
+//         } else if (footerTop <= quickLinks.offsetHeight) {
+//             quickLinks.style.position = 'absolute';
+//             quickLinks.style.top = footerTop - quickLinks.offsetHeight + 'px';
+//             quickLinks.style.marginRight = '20px';
+//             accordion.style.marginLeft = '0';
+//         } else {
+//             quickLinks.style.position = 'relative';
+//             quickLinks.style.top = 'initial';
+//             quickLinks.style.marginRight = '20px';
+//             accordion.style.marginLeft = '0';
+//         }
+//     } else {
+//         quickLinks.style.position = 'relative';
+//         quickLinks.style.top = 'initial';
+//         quickLinks.style.marginRight = '20px';
+//         accordion.style.marginLeft = '0';
+//     }
+// });
 
 </script>
 
+ @include('footer')
