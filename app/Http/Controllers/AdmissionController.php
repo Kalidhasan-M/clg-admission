@@ -43,10 +43,10 @@ class AdmissionController extends Controller
             
             try {
                 // Mail::to('admissionpandi@gmail.com')->send(new Alert($student));
-                Mail::to($student->email)->send(new AdmissionConfirmation($student));
+                // Mail::to($student->email)->send(new AdmissionConfirmation($student));
             } catch (\Exception $e) {
                 // Use the fully qualified namespace
-                \Illuminate\Support\Facades\Log::error('Mail sending failed: ' . $e->getMessage());
+                // \Illuminate\Support\Facades\Log::error('Mail sending failed: ' . $e->getMessage());
                 // Continue execution even if mail fails
             }
             
